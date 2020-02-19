@@ -1,0 +1,26 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Web AR worshop | Le Wagon Tokyo</title>
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <!-- comment to test👇 -->
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body style='margin : 0px; overflow: hidden;'>
+    <!-- comment to test👇 -->
+    <a-scene embedded arjs>
+    <!-- uncomment to test👇 -->
+    <!-- <a-scene> -->
+      <a-entity camera position="0 1 2"></a-entity>
+      <!-- comment to test👇 -->
+      <a-marker preset="hiro">
+        <a-box position='0 1 0' material='color: yellow;' width="1" height="2"></a-box>
+        <a-sphere position="2 1 0" radius="1" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="-1 0.5 -1" radius="0.5" height="1" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 0 0" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <!-- comment to test👇 -->
+      </a-marker>
+    </a-scene>
+  </body>
+</html>
