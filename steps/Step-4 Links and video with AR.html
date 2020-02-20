@@ -10,7 +10,7 @@
     <a-scene embedded arjs >
       <a-entity camera></a-entity>
       <a-assets>
-        <video id="video" autoplay muted src="../assets/yann.mp4"></video>
+        <video id="video" autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto" src="../assets/yann.mp4"></video>
       </a-assets>
       <a-marker preset="hiro">
         <a-plane id="card" position="0 -0.05 0" rotation="-90 0 0" width="2" height="1.25" color="#FFFFFF"></a-plane>
