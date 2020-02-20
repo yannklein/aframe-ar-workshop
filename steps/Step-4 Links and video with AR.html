@@ -7,22 +7,27 @@
     <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script>
   </head>
   <body style='margin : 0px; overflow: hidden;'>
-      <a-scene embedded arjs >
-        <a-assets>
-            <video id="video" autoplay loop="true" src="../assets/yann.mp4"></video>
-        </a-assets>
-        <a-entity camera></a-entity>
-        <a-marker preset="hiro">
-          <a-plane id="card" position="0 -0.05 0" rotation="-90 0 0" width="2" height="1.25" color="#FFFFFF"></a-plane>
-          <a-text position="0 0 -0.1" rotation="-90 0 0" value="Yann Klein" color="#000000" align="center" width="4"></a-text>
-          <a-text position="0 0 0.1" rotation="-90 0 0" value="Bootcamp driver and AR lover" color="#000000" align="center" width="2" ></a-text>
-          <a-plane id="picture" position="-1 0 -0.6" rotation="-90 0 0" width="1" height="1" material="color: white; shader: flat; src: ../assets/yann.jpg"></a-plane>
-          <a-circle id="logo" position="1.1 0 0.6" rotation="-90 0 0" radius="0.6" material="color: white; shader: flat; src: ../assets/logo.png"></a-circle>
-          <a-video src="#video" width="2" height="1.1" position="-1.2 0 1" rotation="-90 0 0"></a-video>
-        </a-marker>
-      </a-scene>
-    </body>
-    <script>
-      document.querySelector("canvas").addEventListener("click", () => window.open("https://www.linkedin.com/in/yann-klein/"));
-    </script>
+    <a-scene embedded arjs >
+      <a-entity camera></a-entity>
+      <a-assets>
+        <video id="video" autoplay loop="true" src="../assets/yann.mp4"></video>
+      </a-assets>
+      <a-marker preset="hiro">
+        <a-plane id="card" position="0 -0.05 0" rotation="-90 0 0" width="2" height="1.25" color="#FFFFFF"></a-plane>
+        <a-text position="0 0 -0.1" rotation="-90 0 0" value="Yann Klein" color="#000000" align="center" width="4"></a-text>
+        <a-text position="0 0 0.1" rotation="-90 0 0" value="Bootcamp driver and AR lover" color="#000000" align="center" width="2" ></a-text>
+        <a-plane id="picture" position="-1 0 -0.6" rotation="-90 0 0" width="1" height="1" material="color: white; shader: flat; src: ../assets/yann.jpg"></a-plane>
+        <a-circle id="logo" position="1.1 0 0.6" rotation="-90 0 0" radius="0.6" material="color: white; shader: flat; src: ../assets/logo.png"></a-circle>
+        <a-video src="#video" width="2" height="1.1" position="-1.2 0 1" rotation="-90 0 0"></a-video>
+      </a-marker>
+    </a-scene>
+  </body>
+  <script> 
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      if (confirm(video.i && "Ready for the experience?")) {
+        document.querySelector("video").play();
+      }
+    }
+    document.querySelector("canvas").addEventListener("click", () => window.open("https://www.linkedin.com/in/yann-klein/"));
+  </script>
 </html>
