@@ -6,10 +6,9 @@
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script> 
-
   </head>
   <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs >
+    <a-scene embedded arjs>
       <a-assets>
         <a-asset-item id="bowling-ball" src="../assets/bowling_ball/scene.gltf"></a-asset-item>
         <a-asset-item id="bowling-pin" src="../assets/bowling_pin/scene.gltf"></a-asset-item>
@@ -17,24 +16,57 @@
       <a-entity camera></a-entity>
       <a-marker preset="hiro">
         <a-scene physics>
-          <a-gltf-model src="#bowling-ball" velocity="0 0 -0.7" position="0 0.13 0" scale="1 1 1" dynamic-body='shape: sphere; mass: 50;'></a-gltf-model>
+          <a-gltf-model id="ball" src="#bowling-ball" position="0 0.13 0" scale="1 1 1" static-body></a-gltf-model>
           
-          <a-gltf-model src="#bowling-pin" position="0 0.0 -2.9" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="0 0.0 -2.9" scale="1 1 1" static-body></a-gltf-model>
           
-          <a-gltf-model src="#bowling-pin" position="0.13 0.0 -3.0" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
-          <a-gltf-model src="#bowling-pin" position="-0.13 0.0 -3.0" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="0.13 0.0 -3.0" scale="1 1 1" static-body></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="-0.13 0.0 -3.0" scale="1 1 1" static-body></a-gltf-model>
           
-          <a-gltf-model src="#bowling-pin" position="0 0.0 -3.1" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
-          <a-gltf-model src="#bowling-pin" position="0.24 0.0 -3.1" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
-          <a-gltf-model src="#bowling-pin" position="-0.24 0.0 -3.1" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="0 0.0 -3.1" scale="1 1 1" static-body></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="0.24 0.0 -3.1" scale="1 1 1" static-body></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="-0.24 0.0 -3.1" scale="1 1 1" static-body></a-gltf-model>
           
-          <a-entity gltf-model="#bowling-pin" position="0.13 0.0 -3.2" dynamic-body='shape: box;'></a-entity>
-          <a-gltf-model src="#bowling-pin" position="-0.13 0.0 -3.2" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
-          <a-gltf-model src="#bowling-pin" position="0.35 0.0 -3.2" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
-          <a-gltf-model src="#bowling-pin" position="-0.35 0.0 -3.2" scale="1 1 1" dynamic-body='shape: box;'></a-gltf-model>
-          <a-box position="0 -0.15 -1.5" rotation="-90 90 0" width="3.5" height="1" depth="0.1" material="color: white; shader: flat; src: ../assets/bowling-lane.png" static-body></a-plane>
-        </a-scene>
+          <a-gltf-model id="pin" src="#bowling-pin" position="0.13 0.0 -3.2" static-body></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="-0.13 0.0 -3.2" scale="1 1 1" static-body></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="0.35 0.0 -3.2" scale="1 1 1" static-body></a-gltf-model>
+          <a-gltf-model id="pin" src="#bowling-pin" position="-0.35 0.0 -3.2" scale="1 1 1" static-body></a-gltf-model>
+          <a-box position="0 -0.15 -1.5" rotation="-90 90 0" width="3.7" height="1" depth="0.1" material="color: white; shader: flat; src: ../assets/bowling-lane.png" static-body></a-box>
+          <a-box position="0 -0.4 -1.5" width="10" height="0.1" depth="10" opacity="0" static-body></a-box>
+          </a-scene>
       </a-marker>
     </a-scene>
+    <input style="position: fixed; bottom: 64px; right: 16px; z-index: 999" type="range" min="0" max="100" value="50" class="slider" id="angle">
+    <a id="reload" href="#" style="position: fixed; top: 16px; right: 16px; z-index: 999; font-size: 64px; text-decoration: none;">🔄</a>
   </body>
+  <script>
+    setTimeout(() => {
+        scene = document.querySelector('a-scene');
+        scene.systems.physics.world.gravity.z = -2;
+        scene.systems.physics.world.gravity.y = -2;
+        scene.systems.physics.world.gravity.x = 0;
+        document.querySelectorAll("#pin").forEach((pin) => {
+          pin.removeAttribute("static-body");
+          pin.setAttribute("dynamic-body", 'shape: box; mass: 1;');
+        });
+        document.querySelector("#ball").removeAttribute("static-body");
+        document.querySelector("#ball").setAttribute("dynamic-body", 'shape: sphere; mass: 50;');
+        const canvas = document.querySelectorAll(".a-canvas")[1];
+        console.log(canvas);
+        canvas.addEventListener("touchstart", (event) => {
+          console.log("touched");
+          const angle = document.querySelector("#angle").value;
+          document.querySelector("#ball").setAttribute("velocity", `${angle/100 -0.5} 0 -2`);
+        });
+        canvas.addEventListener("click", (event) => {
+          console.log("clicked");
+          const angle = document.querySelector("#angle").value;
+          document.querySelector("#ball").setAttribute("velocity", `${angle/100 -0.5} 0 -2`);
+        });
+        document.querySelector("#reload").addEventListener("click", (event) => {
+          console.log("reload");
+          location.reload();
+        });
+    }, 5000);
+  </script>
 </html>
