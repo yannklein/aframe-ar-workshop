@@ -1,0 +1,37 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Web AR worshop | Le Wagon Tokyo</title>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script>
+
+  </head>
+  <body style='margin : 0px; overflow: hidden;'>
+      <a-scene embedded arjs physics>
+        <a-entity camera></a-entity>
+        <a-assets>
+          <a-asset-item id="dice" src="../assets/dice/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-marker preset="hiro">
+          <a-gltf-model id="my-dice" src="#dice" position="0 1 0" scale="0.1 0.1 0.1" static-body></a-gltf-model>
+
+          <a-box position="0 0 0" rotation="0 0 0" width="1" height="0.1" depth="1" material="color: white; shader: flat; src: ../assets/wood.jpeg" static-body></a-box>
+          <a-box position="0 0.5 0.5" rotation="0 0 0" width="1" height="1" depth="0.1" material="color: white; shader: flat; src: ../assets/wood.jpeg" static-body></a-box>
+          <a-box position="0 0.5 -0.5" rotation="0 0 0" width="1" height="1" depth="0.1" material="color: white; shader: flat; src: ../assets/wood.jpeg" static-body></a-box>
+          <a-box position="0.5 0.5 0" rotation="0 0 0" width="0.1" height="1" depth="1" material="color: white; shader: flat; src: ../assets/wood.jpeg" static-body></a-box>
+          <a-box position="-0.5 0.5 0" rotation="0 0 0" width="0.1" height="1" depth="1" material="color: white; shader: flat; src: ../assets/wood.jpeg" static-body></a-box>
+        </a-marker>
+    </a-scene>
+    <script>
+      setTimeout(() => {
+        scene = document.querySelector('a-scene');
+        scene.systems.physics.world.gravity.z = -9;
+        scene.systems.physics.world.gravity.y = 0;
+        document.querySelector("#my-dice").removeAttribute("static-body");
+        document.querySelector("#my-dice").setAttribute("dynamic-body", 'shape: box; mass:8 ;');
+      }, 5000);
+    </script>
+  </body>
+</html>
