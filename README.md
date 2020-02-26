@@ -19,4 +19,4 @@ cd aframe-ar-workshop
 serve
 ```
 
-In your browser got to this url: localhost:8000
+In your browser go to this url: `localhost:8000`
