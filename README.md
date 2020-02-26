@@ -25,6 +25,7 @@ In your browser go to this url: `localhost:8000`
 - https://aframe.io/
 - https://github.com/jeromeetienne/AR.js/tree/master/aframe
 - https://github.com/donmccurdy/aframe-physics-system
+- https://github.com/artoolkit/artoolkit5/tree/master/doc/patterns (markers bank)
 
 ## Go further
 - https://github.com/jeromeetienne/AR.js
