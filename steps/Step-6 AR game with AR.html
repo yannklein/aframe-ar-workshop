@@ -5,7 +5,7 @@
     <title>Web AR worshop | Le Wagon Tokyo</title>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
-    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script> 
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script>
   </head>
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
@@ -17,23 +17,23 @@
       <a-marker preset="hiro">
         <a-scene physics>
           <a-gltf-model id="ball" src="#bowling-ball" position="0 0.13 0" scale="1 1 1" static-body></a-gltf-model>
-          
+
           <a-gltf-model id="pin" src="#bowling-pin" position="0 0.0 -2.9" scale="1 1 1" static-body></a-gltf-model>
-          
+
           <a-gltf-model id="pin" src="#bowling-pin" position="0.13 0.0 -3.0" scale="1 1 1" static-body></a-gltf-model>
           <a-gltf-model id="pin" src="#bowling-pin" position="-0.13 0.0 -3.0" scale="1 1 1" static-body></a-gltf-model>
-          
+
           <a-gltf-model id="pin" src="#bowling-pin" position="0 0.0 -3.1" scale="1 1 1" static-body></a-gltf-model>
           <a-gltf-model id="pin" src="#bowling-pin" position="0.24 0.0 -3.1" scale="1 1 1" static-body></a-gltf-model>
           <a-gltf-model id="pin" src="#bowling-pin" position="-0.24 0.0 -3.1" scale="1 1 1" static-body></a-gltf-model>
-          
+
           <a-gltf-model id="pin" src="#bowling-pin" position="0.13 0.0 -3.2" static-body></a-gltf-model>
           <a-gltf-model id="pin" src="#bowling-pin" position="-0.13 0.0 -3.2" scale="1 1 1" static-body></a-gltf-model>
           <a-gltf-model id="pin" src="#bowling-pin" position="0.35 0.0 -3.2" scale="1 1 1" static-body></a-gltf-model>
           <a-gltf-model id="pin" src="#bowling-pin" position="-0.35 0.0 -3.2" scale="1 1 1" static-body></a-gltf-model>
           <a-box position="0 -0.15 -1.5" rotation="-90 90 0" width="3.7" height="1" depth="0.1" material="color: white; shader: flat; src: ../assets/bowling-lane.png" static-body></a-box>
           <a-box position="0 -0.4 -1.5" width="10" height="0.1" depth="10" opacity="0" static-body></a-box>
-          </a-scene>
+        </a-scene>
       </a-marker>
     </a-scene>
     <input style="position: fixed; bottom: 64px; right: 16px; z-index: 999" type="range" min="0" max="100" value="50" class="slider" id="angle">
@@ -41,28 +41,23 @@
   </body>
   <script>
     setTimeout(() => {
-        scene = document.querySelector('a-scene');
-        scene.systems.physics.world.gravity.z = -2;
-        scene.systems.physics.world.gravity.y = -2;
-        scene.systems.physics.world.gravity.x = 0;
+        // Give gravity to the pins
         document.querySelectorAll("#pin").forEach((pin) => {
           pin.removeAttribute("static-body");
           pin.setAttribute("dynamic-body", 'shape: box; mass: 1;');
         });
+        // Give gravity to the ball
         document.querySelector("#ball").removeAttribute("static-body");
         document.querySelector("#ball").setAttribute("dynamic-body", 'shape: sphere; mass: 50;');
-        const canvas = document.querySelectorAll(".a-canvas")[1];
-        console.log(canvas);
-        canvas.addEventListener("touchstart", (event) => {
-          console.log("touched");
-          const angle = document.querySelector("#angle").value;
-          document.querySelector("#ball").setAttribute("velocity", `${angle/100 -0.5} 0 -2`);
-        });
-        canvas.addEventListener("click", (event) => {
-          console.log("clicked");
-          const angle = document.querySelector("#angle").value;
-          document.querySelector("#ball").setAttribute("velocity", `${angle/100 -0.5} 0 -2`);
-        });
+
+        // Event listener on the canvas
+        const angle = document.querySelector("#angle");
+        const launchBall = (event) => {
+          document.querySelector("#ball").setAttribute("velocity", `${angle.value/100 -0.5} 0 -2`);
+        }
+        angle.addEventListener("touchstart", launchBall);
+        angle.addEventListener("click", launchBall);
+        // Event listener for the page refresh button
         document.querySelector("#reload").addEventListener("click", (event) => {
           console.log("reload");
           location.reload();
