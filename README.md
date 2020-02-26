@@ -20,3 +20,12 @@ serve
 ```
 
 In your browser go to this url: `localhost:8000`
+
+## Resource
+https://aframe.io/
+https://github.com/jeromeetienne/AR.js/tree/master/aframe
+https://github.com/donmccurdy/aframe-physics-system
+
+## Go further
+https://github.com/jeromeetienne/AR.js
+https://threejs.org/
