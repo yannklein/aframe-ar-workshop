@@ -12,18 +12,18 @@
         <a-asset-item id="dice" src="../assets/dice/scene.gltf"></a-asset-item>
       </a-assets>
       <a-entity camera look-controls wasd-controls position="0 1 2" rotation="-15 0 0"></a-entity>
-      <a-gltf-model id="my-dice" src="#dice" position="0 1 0"  rotation="-45 0 0" scale="0.1 0.1 0.1" static-body></a-gltf-model>
+      <a-gltf-model id="my-dice" src="#dice" position="0 1 0" rotation="-45 -45 0" scale="0.001 0.001 0.001" static-body></a-gltf-model>
 
-      <a-box position="0 0 0" rotation="0 0 0" width="1" height="0.1" depth="1" src="../assets/wood.jpeg" static-body></a-box>
-      <a-box position="0 0.5 0.5" rotation="0 0 0" scale="1 1 0.1" src="../assets/wood.jpeg" static-body></a-box>
-      <a-box position="0 0.5 -0.5" rotation="0 0 0" scale="1 1 0.1" src="../assets/wood.jpeg" static-body></a-box>
-      <a-box position="0.5 0.5 0" rotation="0 0 0" scale="0.1 1 1" src="../assets/wood.jpeg" static-body></a-box>
-      <a-box position="-0.5 0.5 0" rotation="0 0 0" scale="0.1 1 1" src="../assets/wood.jpeg" static-body></a-box>
+      <a-box position="0 0 0" scale="1.1 0.1 1.1" src="../assets/wood.jpeg" static-body></a-box>
+      <a-box position="0 0.5 0.5" scale="1.1 1 0.1" src="../assets/wood.jpeg" static-body></a-box>
+      <a-box position="0 0.5 -0.5" scale="1 1 0.1" src="../assets/wood.jpeg" static-body></a-box>
+      <a-box position="0.5 0.5 0" scale="0.1 1 1.1" src="../assets/wood.jpeg" static-body></a-box>
+      <a-box position="-0.5 0.5 0" scale="0.1 1 1" src="../assets/wood.jpeg" static-body></a-box>
     </a-scene>
     <script>
-       setTimeout(() => {
+      setTimeout(() => {
         document.querySelector("#my-dice").removeAttribute("static-body");
-        document.querySelector("#my-dice").setAttribute("dynamic-body", 'shape: box; mass:5 ;');
+        document.querySelector("#my-dice").setAttribute("dynamic-body", 'shape: box; mass: 4;');
       }, 5000);
     </script>
   </body>
