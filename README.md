@@ -1,11 +1,12 @@
 # AFRAME AR Workshop
 
-## Setup
+## Setup for Mac
 
 Install NodeJS (https://nodejs.org/en/)
 
 On a terminal do:
 ```
+git --version
 cd ~/Desktop
 git clone git@github.com:yannklein/aframe-ar-workshop.git
 open .
@@ -17,6 +18,27 @@ Back to the terminal:
 ```
 cd aframe-ar-workshop
 serve
+```
+
+In your browser go to this url: `localhost:8000`
+
+## Setup for Windows
+
+Install NodeJS (https://nodejs.org/en/)
+Install Git (https://git-scm.com/download/win, during the installation select the option "use git from a Win command prompt"
+
+Search for "Node.js prompt" in the Win menu search bar, open it and tap (press Enter after each line):
+```
+cd Desktop
+git clone git@github.com:yannklein/aframe-ar-workshop.git
+```
+
+Drag the "aframe-ar-workshop" folder into SublimeText
+
+Back to the terminal:
+```
+cd aframe-ar-workshop
+http-server
 ```
 
 In your browser go to this url: `localhost:8000`
