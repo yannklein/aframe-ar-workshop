@@ -24,8 +24,8 @@ In your browser go to this url: `localhost:8000`
 
 ## Setup for Windows
 
-Install NodeJS (https://nodejs.org/en/)
-Install Git (https://git-scm.com/download/win, during the installation select the option "use git from a Win command prompt"
+- Install NodeJS (https://nodejs.org/en/)
+- Install Git (https://git-scm.com/download/win, during the installation select the option "use git from a Win command prompt"
 
 Search for "Node.js prompt" in the Win menu search bar, open it and tap (press Enter after each line):
 ```
